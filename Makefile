@@ -25,9 +25,13 @@ CFLAGS =
 ARFLAGS = rsc
 CINCLUDE = -I$(INCLUDE)
 
+MAKE_DIR = mkdir -p
+
 rebuild: clean all
 
-all: $(LIB_OBJECTS) $(PROJECT).c
+all: make_directories $(PROJECT)
+
+$(PROJECT): $(LIB_OBJECTS) $(PROJECT).c
 	$(CC) $^ -o $(BIN)$(PROJECT).bin $(CINCLUDE) 
 
 # archive: $(LIB_OBJECTS)
@@ -47,6 +51,10 @@ $(TEST_OBJECTS): $(TEST_BIN)%_test.o: $(LIBC)%_test.c $(BIN)%.o
 	$(CC) $^ $(TEST_INCLUDE)unity.c -o $@ $(CINCLUDE) -I$(TEST_INCLUDE) # compile the test
 	$@ # run the test
 
+make_directories:
+	$(MAKE_DIR) $(BIN)
+	$(MAKE_DIR) $(TEST_BIN)
+
 clean:
-	rm -rf bin/*
-	rm -rf test_bin/*
+	rm -rf $(BIN)
+	rm -rf $(TEST_BIN)
