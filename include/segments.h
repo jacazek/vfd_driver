@@ -22,4 +22,5 @@
 #define D8 D0 | SEGMENT_CENTER
 #define D9 SEGMENT_TOP | SEGMENT_TOPLEFT | SEGMENT_CENTER | SEGMENT_TOPRIGHT | SEGMENT_BOTTOMRIGHT
 
-void convertValueToSegments(number value, segment segments[], uint8_t size)  ;
+void convertValueToSegments(number value, segment segments[], uint8_t size);
+segment mergeSegments(segment segments[], uint8_t size);

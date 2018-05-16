@@ -55,6 +55,8 @@ make_directories:
 	$(MAKE_DIR) $(BIN)
 	$(MAKE_DIR) $(TEST_BIN)
 
+	
+
 clean:
 	rm -rf $(BIN)
 	rm -rf $(TEST_BIN)

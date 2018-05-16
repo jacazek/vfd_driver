@@ -19,10 +19,19 @@ uint8_t getIndex(number value) {
 	return value % divisor;
 }
 
-extern void convertValueToSegments(number value, segment segments[], uint8_t size) {
+void convertValueToSegments(number value, segment segments[], uint8_t size) {
 	uint8_t i = 0;
 	for (i = 0; i < size; i++) {
 		segments[i] = digits[getIndex(value)];
 		value /= divisor;
 	}
+}
+
+segment mergeSegments(segment segments[], uint8_t size) {
+	segment retval = 0;
+	uint8_t i = 0;
+	for (i = 0; i < size; i++) {
+		retval |= segments[i];
+	}
+	return retval;
 }
